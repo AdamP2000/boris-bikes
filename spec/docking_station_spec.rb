@@ -55,4 +55,9 @@ it "does not release a broken bike" do
   subject.dock(bike)
   expect{ subject.release_bike }.to raise_error 'No bikes available'
 end
+it "still docks bikes even if broken" do
+  bike = Bike.new
+  bike.report_broken
+  expect(subject.dock(bike)).to eq [bike]
+end
 end
